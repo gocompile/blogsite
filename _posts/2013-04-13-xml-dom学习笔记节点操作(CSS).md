@@ -28,7 +28,7 @@ CSSRuls 属性(属性都是只读)
   > 规则类型。
 
 CSSStyleRule 对象
-  > CSSSyle 对象表示CSS样式中一个单独的规则集。
+> CSSSyle 对象表示CSS样式中一个单独的规则集。
 
 CSSStyleRule 属性
 
