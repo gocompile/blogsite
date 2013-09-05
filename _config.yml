@@ -1,4 +1,3 @@
 auto: true
 server: true
-markdown: redcarpet
-layout: default
+
