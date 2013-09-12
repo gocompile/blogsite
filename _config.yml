@@ -1,6 +1,7 @@
 name: Douglas Wei's Home Site
 markdown: redcarpet
 pygments: true
+auto: true
 
 redcarpet:
   extensions: ['no_intra_emphasis', 'tables', 'space_after_headers']
