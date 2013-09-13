@@ -6,7 +6,8 @@ categories: java
 ---
 **2013-09-13**
 
-###StandardServer是什么###
+StandardServer是什么
+===================
 
 StandardServer标准实现Server接口，从tomcat结构层次图中知道，Server处于最外层，其他组件在其内部,起统领做，像一家公司的CEO，负责管理整个公司，Server代表完整的Servlet容器,管理维护Server和全局resource，在各个组件中共享StandardServer资源。在tomcat启动过程中由Catalina通过Digester库加载解析server.xml，创建StandardServer对象，并初始化和启动Server,Server将自己注册到JMX上面，通过tomcat管理页面查看Server状态。StandardServer除了实现Server接口以外，还使用下列组件来完成功能。
 
@@ -46,14 +47,16 @@ StandardServer实现MBeanRegistration接口。MBeanRegistration接口是JMX的MB
 **LifecycleSupport**
 
 StandardServer的属性，它的作用就是负责管理Lifecycle接口实现类的LifecycleListener，只有一个到参的构造器，必须在创建对象时传入Lifecycle，在StandardServer中创建对象时同时将StandardServer自身传入，   
-`private LifecycleSupport lifecycle = new LifecycleSupport(this);`  
+```java
+private LifecycleSupport lifecycle = new LifecycleSupport(this);
+```
 LifecycleSupport 管理注册在StandardServer上的监听器，当监听到LifecycleEvent，LifecycleSupport 马上调用方法fireLifecycleEvent(String, Object)遍历监听器响应事件，属性state指明了当前Lifecycle的状态。
 
 **javax.naming.Context**
 
 StandardServer的属性，是JNDI中的内容，不了解，只知道它提供命名服务，也就是根据名字获取对象以及对象属性信息等，通过给定资源路径，然后就可以获取资源路径下面对象，在server.xml中关于资源的配置，从配置信息中可以看到配置的是tomcat管理页面登陆账号权限信息。
     
-```  
+```java
 
 	<!-- Global JNDI resources Documentation at /docs/jndi-resources-howto.html -->
 	<GlobalNamingResources>
