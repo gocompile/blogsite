@@ -6,8 +6,7 @@ categories: java
 ---
 **2013-09-13**
 
-
-####StandardServer是什么####
+###StandardServer是什么###
 
 StandardServer标准实现Server接口，从tomcat结构层次图中知道，Server处于最外层，其他组件在其内部,起统领做，像一家公司的CEO，负责管理整个公司，Server代表完整的Servlet容器,管理维护Server和全局resource，在各个组件中共享StandardServer资源。在tomcat启动过程中由Catalina通过Digester库加载解析server.xml，创建StandardServer对象，并初始化和启动Server,Server将自己注册到JMX上面，通过tomcat管理页面查看Server状态。StandardServer除了实现Server接口以外，还使用下列组件来完成功能。
 
