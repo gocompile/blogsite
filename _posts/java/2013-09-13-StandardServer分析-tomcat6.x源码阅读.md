@@ -8,9 +8,11 @@ categories: java
 
 
 ####StandardServer是什么
+
 StandardServer标准实现Server接口，从tomcat结构层次图中知道，Server处于最外层，其他组件在其内部,起统领做，像一家公司的CEO，负责管理整个公司，Server代表完整的Servlet容器,管理维护Server和全局resource，在各个组件中共享StandardServer资源。在tomcat启动过程中由Catalina通过Digester库加载解析server.xml，创建StandardServer对象，并初始化和启动Server,Server将自己注册到JMX上面，通过tomcat管理页面查看Server状态。StandardServer除了实现Server接口以外，还使用下列组件来完成功能。
 
 **Lifecycle**
+
 StandardServer实现Lifecycle接口，Lifecycle是tomcat中关于组件生命周期状态监控操作监听的接口，通过Lifecycle提供的9个状态和5个方法，使得监控组件的状态更新和在组件不同生命周期阶段操作成为可能。  
 9的状态：指示组件状态
 
@@ -38,15 +40,18 @@ StandardServer实现Lifecycle接口，Lifecycle是tomcat中关于组件生命周
 
 addLifecycleListener(LifecycleListener)是注册LifecycleEvent事件监听器。LifecycleListener是监听Lifecycle组件状态变更触发的LifecycleEvent事件，当LifecycleListener监听到LifecycleEvent事件事件时，会调用LifecycleListener方法lifecycleEvent(LifecycleEvent)响应事件。
 
-**MBeanRegistration**  
+**MBeanRegistration**
+
 StandardServer实现MBeanRegistration接口。MBeanRegistration接口是JMX的MBean方法的内容，实现该接口的目的是将StandardServer组件注册到JMX中，通过JMX可以实现对StandardServer的控制。
 
-**LifecycleSupport**  
+**LifecycleSupport**
+
 StandardServer的属性，它的作用就是负责管理Lifecycle接口实现类的LifecycleListener，只有一个到参的构造器，必须在创建对象时传入Lifecycle，在StandardServer中创建对象时同时将StandardServer自身传入，   
 `private LifecycleSupport lifecycle = new LifecycleSupport(this);`  
 LifecycleSupport 管理注册在StandardServer上的监听器，当监听到LifecycleEvent，LifecycleSupport 马上调用方法fireLifecycleEvent(String, Object)遍历监听器响应事件，属性state指明了当前Lifecycle的状态。
 
-**javax.naming.Context**  
+**javax.naming.Context**
+
 StandardServer的属性，是JNDI中的内容，不了解，只知道它提供命名服务，也就是根据名字获取对象以及对象属性信息等，通过给定资源路径，然后就可以获取资源路径下面对象，在server.xml中关于资源的配置，从配置信息中可以看到配置的是tomcat管理页面登陆账号权限信息。
     
 ```  
@@ -63,13 +68,16 @@ StandardServer的属性，是JNDI中的内容，不了解，只知道它提供�
 ```  
 。java和第三方交互时经常使用，例如数据库驱动，mysql的JDBC和ODBC,java不用关心其实现部分。[JNDI理解例子，来自博客lujin55](http://lujin55.iteye.com/blog/1492536)
 
-**NamingContextListener**  
+**NamingContextListener**
+
 StandardServer的属性，是JNDI中的内容，不了解，比较复杂，只知道是负责监听javax.naming.Context资源事件。NamingContextListener实现了LifecycleListener、ContainerListener、PropertyChangeListener3个接口，具备监听Lifecycle组件，Container组件、PropertyChange的事件能力。
 
-**NamingResources**  
+**NamingResources**
+
 StandardServer的属性，是JNDI中的内容，不了解，比较复杂，知道它管理命名资源，将要加载的资源封装成对象，可以直接从NamingResources获取对象了。
 
-**PropertyChangeSupport**  
+**PropertyChangeSupport**
+
 StandardServer的属性，参照LifecycleSupport的理解不难看出，PropertyChangeSupport管理对象属性变化监听器，跟LifecycleSupport的使命一样，监听PropertyChangeEvent事件，然后响应。
 
 StandardServer通过JNDI加载server.xml中配置的资源，完成资源配置，注册监听器来监听事件，同时将自己注册到ServerFactory
@@ -347,7 +355,7 @@ StandardServer完成启动后，Catalina在start()方法中调用await()方法�
 ```
 至此，StandardServer的初始化，启动，停止的内容完成了，StandardServer的认识也清晰了很多，StandardServer先从server.xml中加载资源完成配置，提供监听StandardServer状态方法，已经才不同生命周期操作StandardServer；在初始化中触发事件，初始化services，注册到MBeanServer，标记已经初始化，在启动中，触发启动事件，启动services，启动完成后，在由Catalina触发awaite()方法，启动ServerSocket监听请求关闭Server命令，在停止Server stop()方法中，触发停止Server事件，停止services，清除资源。注册在StandardServer上的监听器有点复杂，以后在看看是什么回事。
 
-经过检测Catalian不在StandardServer的services列表中，那Catalian为何要实现Service接口呢？ 
+经过检测Catalian不在StandardServer的services列表中，那Catalian为何要实现Service接口呢？  
 感觉JNDI有点意思，有时间好好看看!
 
 
