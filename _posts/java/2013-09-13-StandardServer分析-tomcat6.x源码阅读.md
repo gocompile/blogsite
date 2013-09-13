@@ -47,9 +47,7 @@ StandardServer实现MBeanRegistration接口。MBeanRegistration接口是JMX的MB
 **LifecycleSupport**
 
 StandardServer的属性，它的作用就是负责管理Lifecycle接口实现类的LifecycleListener，只有一个到参的构造器，必须在创建对象时传入Lifecycle，在StandardServer中创建对象时同时将StandardServer自身传入，   
-```java
-private LifecycleSupport lifecycle = new LifecycleSupport(this);
-```
+```private LifecycleSupport lifecycle = new LifecycleSupport(this);```
 LifecycleSupport 管理注册在StandardServer上的监听器，当监听到LifecycleEvent，LifecycleSupport 马上调用方法fireLifecycleEvent(String, Object)遍历监听器响应事件，属性state指明了当前Lifecycle的状态。
 
 **javax.naming.Context**
