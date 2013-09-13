@@ -48,7 +48,7 @@ StandardServer实现MBeanRegistration接口。MBeanRegistration接口是JMX的MB
 
 StandardServer的属性，它的作用就是负责管理Lifecycle接口实现类的LifecycleListener，只有一个到参的构造器，必须在创建对象时传入Lifecycle，在StandardServer中创建对象时同时将StandardServer自身传入，   
 
-```
+```java
 private LifecycleSupport lifecycle = new LifecycleSupport(this);
 ```
 
@@ -92,8 +92,7 @@ StandardServer通过JNDI加载server.xml中配置的资源，完成资源配置�
 + 第三步注册到MBeanServer服务器，添加监控，可以在tomcat管理页面管理Server
 + 第四步遍历services数组，挨个调用initialize()初始化
 
-```
-
+```java
 	/**
 	 * Invoke a pre-startup initialization. This is used to allow connectors to
 	 * bind to restricted ports under Unix operating environments.
@@ -140,8 +139,7 @@ StandardServer初始化完成后，调用start()方法启动Server，在start()�
 + 第三步遍历services数组，挨个调用start()初始化
 + 第四步触发AFTER_START_EVENT事件,通知监听器
 
-```
-
+```java
 	/**
 	 * Prepare for the beginning of active use of the public methods of this
 	 * component. This method should be called before any of the public methods
@@ -184,8 +182,7 @@ StandardServer初始化完成后，调用start()方法启动Server，在start()�
 
 StandardServer完成启动后，Catalina在start()方法中调用await()方法，await()中调用StandardServer的await()，StandardServer的await()方法主要完成的功能非常简单：启动ServerSocket监听网络端口请求关闭Server的请求,从代码中可以看出StandardServer使用一个死循环不断监听端口，当接收到"SHUTDOWN"命令时跳出循环，回到Catalina的start()方法中。
 
-```
-
+```java
 	/**
 	 * Wait until a proper shutdown command is received, then return. This keeps
 	 * the main thread alive - the thread pool listening for http connections is
@@ -320,8 +317,7 @@ StandardServer完成启动后，Catalina在start()方法中调用await()方法�
 + 第四步触发AFTER_STOP_EVENT事件,通知监听器
 + 第五步调用stopAwait(),关闭ServerSocket，调用interrupt()退出线程。
 
-```
-
+```java
 	/**
 	 * Gracefully terminate the active use of the public methods of this
 	 * component. This method should be the last one called on a given instance
