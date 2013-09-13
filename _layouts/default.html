@@ -17,6 +17,15 @@
         <link rel="stylesheet" href="/css/desert.css">
         
         <script type="text/javascript" src="http://libs.baidu.com/jquery/1.9.1/jquery.min.js"></script>
+        
+        <!--代码高亮-->
+        <script type="text/javascript" src="/js/prettify.js"></script>
+        <script>
+            $(window).load(function(){
+                 $("pre").addClass("prettyprint linenums");
+                 prettyPrint();
+            })
+        </script>
     </head>
     <body>
 
@@ -44,9 +53,6 @@
           </div>
         </div>
         
-        <!--代码高亮-->
-        <script type="text/javascript" src="/js/prettify.js"></script>
-    
          <!--qq统计-->
         <script type="text/javascript" src="http://tajs.qq.com/stats?sId=27281197" charset="UTF-8"></script>
         <!--百度统计-->
@@ -64,12 +70,6 @@
           ga('create', 'UA-44022938-1', 'budinge.com');
           ga('send', 'pageview');
         
-        </script>
-        <script>
-            $(window).load(function(){
-                 $("pre").addClass("prettyprint linenums");
-                 prettyPrint();
-            })
         </script>
     </body>
 </html>
