@@ -12,7 +12,7 @@
         <!-- syntax highlighting CSS -->
         <link rel="stylesheet" href="/css/syntax.css">
         
-        
+        <script type="text/javascript" src="jquery-1.6.1.min.js"></script>
     </head>
     <body>
 
@@ -62,6 +62,11 @@
           ga('send', 'pageview');
         
         </script>
-        
+        <script>
+            $(window).load(function(){
+                 $("pre").addClass("prettyprint");
+                 prettyPrint();
+            })
+        </script>
     </body>
 </html>
