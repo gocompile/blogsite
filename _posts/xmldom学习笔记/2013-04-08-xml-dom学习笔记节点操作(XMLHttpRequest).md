@@ -1,4 +1,9 @@
-#前端学习之xml dom 系列之节点操作(XMLHttpRequest)
+---
+layout: post
+title:  "前端学习之xml dom 系列之节点操作(XMLHttpRequest)"
+date:   2013-09-08 21:06:09
+categories: jekyll update
+---
 >[w3school xml dom](http://www.w3school.com.cn/xmldom/index.asp) 
 
 >在浏览器中使用XMLHttpRequest对象实现异步交互，可以无需刷新页面即可实现页面数据更新

@@ -1,4 +1,9 @@
-#前端学习之xml dom 系列之节点操作(CharacterData)
+---
+layout: post
+title:  "前端学习之xml dom 系列之节点操作(CharacterData)"
+date:   2013-09-08 21:06:09
+categories: jekyll update
+---
 >[w3school xml dom](http://www.w3school.com.cn/xmldom/index.asp) 
 
 CharacterData
