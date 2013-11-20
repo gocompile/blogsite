@@ -1,6 +1,5 @@
 markdown: rdiscount
 pygments: true
-=======
 name: Douglas Wei's Home Site
 markdown: redcarpet
 pygments: true
