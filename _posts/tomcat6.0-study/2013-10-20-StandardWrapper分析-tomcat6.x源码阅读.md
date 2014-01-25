@@ -1,3 +1,9 @@
+---
+layout: post
+title: StandardWrapper分析-tomcat6.x源码阅读
+date: 2013-10-20
+categories: java
+---
 **2013-10-20**
 
 StandardWrapper是什么

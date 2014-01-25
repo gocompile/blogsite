@@ -1,3 +1,9 @@
+---
+layout: post
+title: ProtocolHandler和Http11Protocol分析-tomcat6.x源码阅读
+date: 2013-11-17
+categories: java
+---
 **2013-11-17**
 
 tomcate处理HTTP请求，需要有一个网络端口监听ServerSocket来完成任务。接口ProtocolHandler被设计成控制网络端口监听组件运行，负责组件的生命周期控制，这个接口不是规范网络端口监听组件的功能，而是负责维护组件的生命周期。从名字上面看，属于网络协议处理者，但它不负责这功能，而是将其交给org.apache.coyote.Adapter来完成，这么设计估计是为了方便维护和拓展新功能。Http11Protocol是ProtocolHandler接口的一个实现(是Connector中默认处理协议),被设计成用来处理HTTP1.1网络协议的请求,通过该类可以完成在某个网络端口上面的监听,同时以HTTP1.1的协议来解析请求内容，然后将请求传递到Connector所寄居的Container容器pipeline流水工作线上处理。

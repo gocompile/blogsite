@@ -1,3 +1,9 @@
+---
+layout: post
+title: Connector分析-tomcat6.x源码阅读
+date: 2013-11-16
+categories: java
+---
 **2013-11-16**
 
 

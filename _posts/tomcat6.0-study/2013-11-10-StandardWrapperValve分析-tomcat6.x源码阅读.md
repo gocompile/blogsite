@@ -1,3 +1,9 @@
+---
+layout: post
+title: StandardWrapperValve分析-tomcat6.x源码阅读
+date: 2013-11-10
+categories: java
+---
 **2013-11-10**
 
 StandardWrapperValve是StandardWrapper容器的BasicValve，tomcat使用容器的BasicValve来控制处理请求，StandardWrapperValve的作用是负责为请求选择Wrapper,调用Servlet处理请求,控制请求处理流程。寄生于StandardWrapper中，StandardWrapperValve作为BasicValve是如何完成即可功能的呢。
