@@ -1,6 +1,9 @@
-
-
-
+---
+layout: post
+title: JIoEndpoint网络端口监听ServerSocket-tomcat6.x源码阅读
+date: 2013-11-18
+categories: java
+---
 **2013-11-18**
 
 tomcate需要不间断监听网络端口，接收客户端请求，完成响应。JIoEndpoint的角色是监听网络端口请求，然后见接收到的网络请求转给servlet处理。他负责管理ServerSocket(TCP/IP),接收socket,交由工作线程来处理.在JIoEndpoint类内部规范了socket的处理接口，使用线程池处理每一个socket.

@@ -1,3 +1,9 @@
+---
+layout: post
+title: ApplicationFilterFactory与ApplicationFilterChain-tomcat6.x源码阅读
+date: 2013-11-11
+categories: java
+---
 **2013-11-11**
 
 ApplicationFilterFactory和ApplicationFilterChain都是跟Filter相关的类，前者根据注册在Wrapper的Filter,经过筛选成产后者,后者是多个Filter集合的管理类。
