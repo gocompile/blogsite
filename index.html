@@ -2,12 +2,18 @@
 layout: default
 title: Douglas Wei's Home Site
 ---
-
-<div id="home">
-  <h1>Blog Posts</h1>
-  <ul class="posts">
-    {% for post in site.posts %}
-      <li><span>{{ post.date | date_to_string }}</span> &raquo; <a href="{{ post.url }}">{{ post.title }}</a></li>
-    {% endfor %}
-  </ul>
-</div>
+	<div class="posts">
+		<ul>
+		{% for post in paginator.posts %}
+			<li>
+				<div class="post-content">
+					<div class="title"><a href="{{ post.url }}">{{ post.title }}</a></div>
+					<div class="authot"></div>
+					<div class="date">{{post.date}}</div>
+					<div class="content">{{ post.content }}</div>
+				</div>
+			</li>
+		{% endfor%}
+		<ul>
+	</div>
+	{% include paginator.html %}
