@@ -1,5 +1,10 @@
 <!--page footer -->
 <div class="aside">
+<div class="me">
+        <div class="title">ABOUT ME</div>
+        <div class="info">[码农]</div>
+</div>
+
 
 <div class="links">
         {% for i in site.customLinks %}
