@@ -6,12 +6,12 @@ categories: java
 ---
 **2013-11-18**
 
-tomcate需要不间断监听网络端口，接收客户端请求，完成响应。JIoEndpoint的角色是监听网络端口请求，然后见接收到的网络请求转给servlet处理。他负责管理ServerSocket(TCP/IP),接收socket,交由工作线程来处理.在JIoEndpoint类内部规范了socket的处理接口，使用线程池处理每一个socket.
+tomcat需要不间断监听网络端口，接收客户端请求，完成响应。JIoEndpoint的角色是监听网络端口请求，然后见接收到的网络请求转给servlet处理。他负责管理ServerSocket(TCP/IP),接收socket,交由工作线程来处理.在JIoEndpoint类内部规范了socket的处理接口，使用线程池处理每一个socket.
 
 JIoEndpoint使用ServerSocket接收来客户端的请求socket,收到请求后从线程池中去一个工程线程来处理socket.JIoEndpoint是如何完成呢?通过ServerSocketFactory创建ServerSocket，多个Acceptor线程类不间断监听请求，将请求分配给Worker，Worker调用Handler.process()完成处理过程.下面看看这几个组件的详细信息.
 
 *Acceptor*  
-ServerSocket接收socket请求线程类，也即使用ServerSocket监听网络端口请求。是线程类，在tomcate中会同时运行多个线程实来提高监听效率和成功率，服务的时效性和可靠性都有提升，避免在一个线程挂掉的情况下无法监听客户端请求。类只有一个方法`run()`,代码如下：
+ServerSocket接收socket请求线程类，也即使用ServerSocket监听网络端口请求。是线程类，在tomcat中会同时运行多个线程实来提高监听效率和成功率，服务的时效性和可靠性都有提升，避免在一个线程挂掉的情况下无法监听客户端请求。类只有一个方法`run()`,代码如下：
 
 ```java
 
@@ -75,7 +75,7 @@ ServerSocket接收socket请求线程类，也即使用ServerSocket监听网络�
 
 
 *processSocket(Socket)*  
-负责处理socket，为socket选择一个工作线程.如果tomcate中使用了线程运行池的话，则从运行池中取一个线程运行器来处理socket，否则从工作线程池中取一个工作线程来处理。(没弄明白区别是啥，估计跟性能有关)
+负责处理socket，为socket选择一个工作线程.如果tomcat中使用了线程运行池的话，则从运行池中取一个线程运行器来处理socket，否则从工作线程池中取一个工作线程来处理。(没弄明白区别是啥，估计跟性能有关)
 
 *SocketProcessor*  
 是socket的处理线程类，在线程方法run()中处理从Acceptor中传递过来的socket，它本身不做任何逻辑处理，只负责调用handler对socket的处理，详细代码如下.
@@ -112,12 +112,12 @@ ServerSocket接收socket请求线程类，也即使用ServerSocket监听网络�
 
 	}
 ```
-在SocketProcessor的run()方法中先对socket做配置操作，然后调用Handler.process(Socket)处理.Handler是tomcate定义处理Socket的接口.
+在SocketProcessor的run()方法中先对socket做配置操作，然后调用Handler.process(Socket)处理.Handler是tomcat定义处理Socket的接口.
 
 *Handler*  
 该接口时JIoEndpoint定义来处理socket的接口，具体的协议实现具体方法。HTTP1.1协议处理类Http11Protocol中的内部类Http11ConnectionHandler实现了本接口，处理关于HTTP1.1协议socket.
 
-tomcate是多线程处理socket，Worker是JIoEndpoint中定义socket处理工作线程运行器，一个socket分配一个Worker处理，代替如果在tomcate的配置文件中server.xml没有配置实用线程组池来作为socket的工作线程.
+tomcat是多线程处理socket，Worker是JIoEndpoint中定义socket处理工作线程运行器，一个socket分配一个Worker处理，代替如果在tomcat的配置文件中server.xml没有配置实用线程组池来作为socket的工作线程.
 
 *Worker*  
 负责处理socket的工作线程，Worker实现了socket的等待队列功能。当Acceptor与客户端建立连接产生socket时，将从工作线程组中取出一个工程线程处理socket，如果当前工作线程不可用,则同步等待工作进程到可用状态socket才会被处理.Worker有3个属性:
