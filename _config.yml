@@ -9,3 +9,12 @@ redcarpet:
   extensions: ['no_intra_emphasis', 'tables', 'space_after_headers']
   
 paginate: 5
+
+#Links
+customLinks:
+  - item:
+    - text: Vic
+      url: http://vicbeta.com/
+    - text: Travisup
+      url: http://travisup.com/
+    message: Friends
