@@ -48,15 +48,15 @@ p em {
 }
 
 a {
-	color: #00a;
+	color: #FFF;
 }
 
 a:hover {
-	color: #000;
+	color: #FFF;
 }
 
 a:visited {
-	color: #a0a;
+	color: #FFF;
 }
 
 .header,.contain,.footer {
@@ -85,6 +85,15 @@ li {
 	width: 33%;
 }
 
+.header .wrap .logo-nav .title{
+	font-family: serif;
+	font-size: 100px;
+}
+
+.header .wrap .logo-nav .title a{
+	color: black;
+}
+
 .header li {
 	float: left;
 }
@@ -98,6 +107,7 @@ li {
 .header .main-nav {
 	float: left;
 	margin-top: 50px;
+	margin-left: 50px;
 }
 
 .header .main-nav li a {
@@ -175,6 +185,29 @@ li {
 	box-shadow: 0 3px 10px rgba(0, 0, 0, .1);
 	font-size: 16px;
 }
+
+
+.pagination {
+  text-align: center;
+  padding-top: 40px;
+  position: relative;
+  margin: 40px -20px 10px;
+}
+
+
+.pagination a{
+  color: #fff;
+  font-size: 16px;
+  text-transform: uppercase;
+  font-weight: 700;
+  padding: 8px 12px 10px;
+  border-radius: 5px;
+  /*border: 1px solid #333;*/
+  box-shadow: 0 1px 3px rgba(0,0,0,.3), inset 0 1px 1px rgba(255,255,255,.5);
+  background: #777;
+  text-decoration: none;
+}
+
 /*****************************************************************************/
 /*
 /* Code Highlighting
